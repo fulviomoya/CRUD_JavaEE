@@ -2,6 +2,9 @@ package com.fulvio.persistencia.service;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+
+@Remote
 public interface GenericoDAO<E>{
 	boolean guardar (E entity);
 	boolean actualizar (E entity);

@@ -8,13 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-enum Sexo {
-	MASCULINO, FEMENINO
-}
-
 @SuppressWarnings("serial")
 @Entity
 public class Ciudadano implements Serializable {
+
+	public enum Sexo {
+		MASCULINO, FEMENINO
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -26,12 +27,11 @@ public class Ciudadano implements Serializable {
 	private List<Telefono> telefonos;
 
 	public Ciudadano() {
-		
+
 	}
-	
-	public Ciudadano(long id, String nombre, String apellido, Sexo sexo,
+
+	public Ciudadano(String nombre, String apellido, Sexo sexo,
 			Direccion direccion, String email) {
-		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;

@@ -1,26 +1,29 @@
 package com.fulvio.persistencia.service;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-public abstract class GenericoDAOImpl implements GenericoDAO<Object>{
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceManager");
+import com.fulvio.persistencia.entities.Ciudadano;
+
+@Stateless
+@LocalBean
+public class GenericoDAOImpl implements GenericoDAO<Ciudadano>{
+	@PersistenceContext(unitName="PersistenceManager")
 	private EntityManager em;
-	protected Class<?> entityClass;
 	
+	protected Ciudadano entityClass;
 	public GenericoDAOImpl() {
-		 em = emf.createEntityManager();
-		 ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();
-		 this.entityClass= (Class<?>) genericSuperClass.getActualTypeArguments()[1];  
+		 /*ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();
+		 this.entityClass= (Ciudadano) genericSuperClass.getActualTypeArguments()[1];  */
 	}
 
 	@Override
-	public boolean guardar(Object entity) {
+	public boolean guardar(Ciudadano entity) {
 		em.getTransaction().begin();
 		em.persist(entity);
 		em.getTransaction().commit();
@@ -28,7 +31,7 @@ public abstract class GenericoDAOImpl implements GenericoDAO<Object>{
 	}
 
 	@Override
-	public boolean actualizar(Object entity) {
+	public boolean actualizar(Ciudadano entity) {
 		em.getTransaction().begin();
 		em.merge(entity);
 		em.getTransaction().commit();
@@ -36,23 +39,23 @@ public abstract class GenericoDAOImpl implements GenericoDAO<Object>{
 	}
 
 	@Override
-	public void eliminar(Object entity) {
+	public void eliminar(Ciudadano entity) {
 		em.getTransaction().begin();
 		em.remove(entity);
 		em.getTransaction().commit();
 	}
 
 	@Override
-	public Object bucarPorId(int id) {
-		em.find(entityClass, id);
+	public Ciudadano bucarPorId(int id) {
+		em.find(Ciudadano.class, id);
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object> listarTodos() {
+	public List<Ciudadano> listarTodos() {
 		Query query = em.createQuery("SELECT c FROM CIUDADANO c");
-		return (List<Object>) query.getResultList();
+		return (List<Ciudadano>) query.getResultList();
 	}
 	
 }
