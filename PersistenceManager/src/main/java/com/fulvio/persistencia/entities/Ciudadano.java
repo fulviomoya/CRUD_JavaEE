@@ -3,10 +3,13 @@ package com.fulvio.persistencia.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @SuppressWarnings("serial")
 @Entity
@@ -22,8 +25,11 @@ public class Ciudadano implements Serializable {
 	private String nombre;
 	private String apellido;
 	private Sexo sexo;
+	
+	@OneToOne(cascade=CascadeType.ALL)
 	private Direccion direccion;
 	private String email;
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Telefono> telefonos;
 
 	public Ciudadano() {

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @SuppressWarnings("serial")
 @Entity
 public class Direccion implements Serializable{
-	@Id
+	@Id 
 	private int id;
 	private int noCasa;
 	private String calle;
