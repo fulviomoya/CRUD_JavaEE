@@ -26,6 +26,7 @@ public class CiudadanoBean implements CiudadanoRemote, CiudadanoLocal{
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		entityManager.flush();
 		return true;
 	}
 
