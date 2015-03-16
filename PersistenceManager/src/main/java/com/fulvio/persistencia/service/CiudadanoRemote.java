@@ -7,8 +7,8 @@ import javax.ejb.Remote;
 import com.fulvio.persistencia.entities.Ciudadano;
 
 @Remote
-public interface CiudadanoBeanRemote{
-	boolean guardar (Ciudadano entity);
+public interface CiudadanoRemote{
+	boolean guardar (Ciudadano entity) throws Exception;
 	boolean actualizar (Ciudadano entity);
 	void eliminar (Ciudadano entity);
 	Ciudadano bucarPorId (int Id);

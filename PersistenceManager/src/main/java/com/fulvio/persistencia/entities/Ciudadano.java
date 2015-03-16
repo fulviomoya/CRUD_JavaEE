@@ -20,24 +20,24 @@ public class Ciudadano implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nombre;
 	private String apellido;
 	private Sexo sexo;
-	
-	@OneToOne(cascade=CascadeType.ALL)
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private Direccion direccion;
 	private String email;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Telefono> telefonos;
 
 	public Ciudadano() {
 
 	}
 
-	public Ciudadano(String nombre, String apellido, Sexo sexo,
+	public Ciudadano(long id, String nombre, String apellido, Sexo sexo,
 			Direccion direccion, String email) {
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;

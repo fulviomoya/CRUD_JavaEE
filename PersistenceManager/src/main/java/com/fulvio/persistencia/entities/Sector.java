@@ -10,12 +10,12 @@ import javax.persistence.Id;
 public class Sector implements Serializable{
 	@Id
 	private int id;
-	private int nombre;
+	private String nombre;
 	
 	public Sector () {
 		//
 	}
-	public Sector(int id, int nombre) {
+	public Sector(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 	}
@@ -26,10 +26,10 @@ public class Sector implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getDescripcion() {
+	public String getDescripcion() {
 		return nombre;
 	}
-	public void setDescripcion(int descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.nombre = descripcion;
 	}
 }

@@ -2,8 +2,11 @@ package com.fulvio.persistencia.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @SuppressWarnings("serial")
 @Entity
@@ -12,8 +15,11 @@ public class Direccion implements Serializable{
 	private int id;
 	private int noCasa;
 	private String calle;
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Sector sector;
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Ciudad ciudad;
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Pais pais;
 	
 	

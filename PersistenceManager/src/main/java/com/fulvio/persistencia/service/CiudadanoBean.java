@@ -11,19 +11,18 @@ import javax.persistence.Query;
 import com.fulvio.persistencia.entities.Ciudadano;
 
 @Stateless
-public class CiudadanoEJBImpl implements CiudadanoBeanRemote{
+public class CiudadanoBean implements CiudadanoRemote, CiudadanoLocal{
+	//@PersistenceUnit(name="PeManPU")
 	private EntityManager entityManager;
 	private EntityManagerFactory emf;
-
-	protected Ciudadano entityClass;
 	
-	public CiudadanoEJBImpl() {
-		emf = Persistence.createEntityManagerFactory("PersistenceManagerPU");
+	public CiudadanoBean() {
+		emf = Persistence.createEntityManagerFactory("PeManPU");
 		entityManager = emf.createEntityManager();
 	}
 
 	@Override
-	public boolean guardar(Ciudadano entity) {
+	public boolean guardar(Ciudadano entity) throws Exception {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
