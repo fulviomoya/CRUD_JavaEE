@@ -37,13 +37,14 @@ public class PruebaPersistencia {
 	@Test
 	public void insercionNuevoCiudadanoTest() throws Exception {
 		Direccion dir = new Direccion();
+		dir.setId(10);
 		dir.setCalle("Calle i");
-		dir.setCiudad(new Ciudad(1, "Santiago"));
-		dir.setPais(new Pais(1, "RD"));
-		dir.setSector(new Sector(1, "Los Mina"));
+		dir.setCiudad(new Ciudad(2, "Santiago"));
+		dir.setPais(new Pais(2, "RD"));
+		dir.setSector(new Sector(3, "Los Mina"));
 
-		Ciudadano c = new Ciudadano(16, "Fulvio", "Moya", Sexo.MASCULINO, dir,
-				"adf@as44da.com");
+		Ciudadano c = new Ciudadano(11, "Fulvio", "Moya", Sexo.MASCULINO, dir,
+				"type.asd12@aol.com");
 
 		assertTrue(cbr.guardar(c));
 	}
